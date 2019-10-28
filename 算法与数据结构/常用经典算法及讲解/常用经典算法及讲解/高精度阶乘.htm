@@ -1,0 +1,194 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 9">
+<meta name=Originator content="Microsoft Word 9">
+<link rel=File-List href="./No88.files/filelist.xml">
+<title>高精度阶乘</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>a</o:Author>
+  <o:LastAuthor>a</o:LastAuthor>
+  <o:Revision>1</o:Revision>
+  <o:TotalTime>0</o:TotalTime>
+  <o:Created>1996-12-31T17:00:00Z</o:Created>
+  <o:LastSaved>1996-12-31T17:00:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Company>aa</o:Company>
+  <o:Lines>1</o:Lines>
+  <o:Paragraphs>1</o:Paragraphs>
+  <o:Version>9.2812</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:PunctuationKerning/>
+  <w:DrawingGridVerticalSpacing>7.8 磅</w:DrawingGridVerticalSpacing>
+  <w:DisplayHorizontalDrawingGridEvery>0</w:DisplayHorizontalDrawingGridEvery>
+  <w:DisplayVerticalDrawingGridEvery>2</w:DisplayVerticalDrawingGridEvery>
+  <w:Compatibility>
+   <w:SpaceForUL/>
+   <w:BalanceSingleByteDoubleByteWidth/>
+   <w:DoNotLeaveBackslashAlone/>
+   <w:ULTrailSpace/>
+   <w:DoNotExpandShiftReturn/>
+   <w:AdjustLineHeightInTable/>
+   <w:UseFELayout/>
+  </w:Compatibility>
+ </w:WordDocument>
+</xml><![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+@font-face
+	{font-family:宋体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-alt:SimSun;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+@font-face
+	{font-family:"\@宋体";
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:1 135135232 16 0 262144 0;}
+ /* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+ /* Page Definitions */
+@page
+	{mso-page-border-surround-header:no;
+	mso-page-border-surround-footer:no;}
+@page Section1
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;
+	mso-header-margin:42.55pt;
+	mso-footer-margin:49.6pt;
+	mso-paper-source:0;
+	layout-grid:15.6pt;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+</head>
+
+<body lang=ZH-CN style='tab-interval:21.0pt;text-justify-trim:punctuation' bgcolor="#e8ffe8">
+<div class=Section1 style='layout-grid:15.6pt'>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>高精度阶乘</span></p>
+
+<p class=MsoNormal><span lang=EN-US>#include &quot;stdio.h&quot;<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>int n;<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>int a[200],b[200];<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>void mult(int i,int m)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style="mso-spacerun:
+yes">&nbsp;</span>{int j;<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style="mso-spacerun:
+yes">&nbsp;</span>for(j=1;j&lt;=i;j++)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style="mso-spacerun: yes">&nbsp;
+</span>a[j]=a[j]*m;<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style="mso-spacerun: yes">&nbsp;
+</span>for (j=1;j&lt;i+4;j++)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span>{ a[j+1]+=a[j]/10; a[j]=a[j]%10;<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp; </span>}<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>}<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>void prnt(void)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>{ int i,j;<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style="mso-spacerun: yes">&nbsp;
+</span>for (j=190;a[j]==0;j--);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style="mso-spacerun: yes">&nbsp;
+</span>for (i=1;i&lt;=j;i++)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span>{ printf(&quot;%1d&quot;,a[j-i+1]);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp; </span>if(i%50 ==0)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp; </span>printf(&quot;\n&quot;);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span>}<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style="mso-spacerun: yes">&nbsp;
+</span>printf(&quot;\n&quot;);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style="mso-spacerun:
+yes">&nbsp;</span>}<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>main()<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>{int i,j,k;<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>/*printf(&quot;input n:\n&quot;);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>scanf(&quot;%d&quot;,&amp;n);*/<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>n=100;<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>for(i=2;i&lt;200;i++)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style="mso-spacerun:
+yes">&nbsp;</span>a[i]=0;<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>a[1]=1;<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>j=1;<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>for(i=2;i&lt;=n;i++)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style="mso-spacerun:
+yes">&nbsp;</span>{mult(j,i);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style="mso-spacerun: yes">&nbsp;
+</span>for (j=190;a[j]==0;j--);<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style="mso-spacerun:
+yes">&nbsp;</span>}<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>prnt();<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US>}<o:p></o:p></span></p>
+
+<p class=MsoNormal></p>
+
+</div>
+
+</body>
+
+</html>

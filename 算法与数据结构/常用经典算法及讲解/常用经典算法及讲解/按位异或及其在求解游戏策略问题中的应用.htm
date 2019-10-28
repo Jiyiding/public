@@ -1,0 +1,1734 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 9">
+<meta name=Originator content="Microsoft Word 9">
+<link rel=File-List href="./no4.files/filelist.xml">
+<title>按位异或及其在游戏策略算法中的应用</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>LiXueWu</o:Author>
+  <o:LastAuthor>a</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:TotalTime>73</o:TotalTime>
+  <o:LastPrinted>2000-11-14T11:59:00Z</o:LastPrinted>
+  <o:Created>1996-12-31T18:00:00Z</o:Created>
+  <o:LastSaved>1996-12-31T18:00:00Z</o:LastSaved>
+  <o:Pages>6</o:Pages>
+  <o:Words>934</o:Words>
+  <o:Characters>5324</o:Characters>
+  <o:Company>ACER</o:Company>
+  <o:Lines>44</o:Lines>
+  <o:Paragraphs>10</o:Paragraphs>
+  <o:CharactersWithSpaces>6538</o:CharactersWithSpaces>
+  <o:Version>9.2812</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:PunctuationKerning/>
+  <w:DrawingGridHorizontalSpacing>5.25 磅</w:DrawingGridHorizontalSpacing>
+  <w:DrawingGridVerticalSpacing>7.8 磅</w:DrawingGridVerticalSpacing>
+  <w:DisplayHorizontalDrawingGridEvery>0</w:DisplayHorizontalDrawingGridEvery>
+  <w:DisplayVerticalDrawingGridEvery>2</w:DisplayVerticalDrawingGridEvery>
+  <w:Compatibility>
+   <w:SpaceForUL/>
+   <w:BalanceSingleByteDoubleByteWidth/>
+   <w:DoNotLeaveBackslashAlone/>
+   <w:ULTrailSpace/>
+   <w:DoNotExpandShiftReturn/>
+   <w:FootnoteLayoutLikeWW8/>
+   <w:ShapeLayoutLikeWW8/>
+   <w:AlignTablesRowByRow/>
+   <w:ForgetLastTabAlignment/>
+   <w:LayoutRawTableWidth/>
+   <w:LayoutTableRowsApart/>
+   <w:UseFELayout/>
+  </w:Compatibility>
+ </w:WordDocument>
+</xml><![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+@font-face
+	{font-family:宋体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-alt:SimSun;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+@font-face
+	{font-family:黑体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-alt:SimHei;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:1 135135232 16 0 262144 0;}
+@font-face
+	{font-family:"\@宋体";
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:1 135135232 16 0 262144 0;}
+@font-face
+	{font-family:"\@黑体";
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:1 135135232 16 0 262144 0;}
+@font-face
+	{font-family:仿宋_GB2312;
+	panose-1:2 1 6 9 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:modern;
+	mso-font-pitch:fixed;
+	mso-font-signature:1 135135232 16 0 262144 0;}
+@font-face
+	{font-family:楷体_GB2312;
+	panose-1:2 1 6 9 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:modern;
+	mso-font-pitch:fixed;
+	mso-font-signature:1 135135232 16 0 262144 0;}
+@font-face
+	{font-family:"\@仿宋_GB2312";
+	panose-1:2 1 6 9 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:modern;
+	mso-font-pitch:fixed;
+	mso-font-signature:1 135135232 16 0 262144 0;}
+@font-face
+	{font-family:"\@楷体_GB2312";
+	panose-1:2 1 6 9 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:modern;
+	mso-font-pitch:fixed;
+	mso-font-signature:1 135135232 16 0 262144 0;}
+ /* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+h1
+	{mso-style-next:正文;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	line-height:20.0pt;
+	mso-line-height-rule:exactly;
+	mso-pagination:none;
+	page-break-after:avoid;
+	mso-outline-level:1;
+	layout-grid-mode:char;
+	mso-layout-grid-align:none;
+	font-size:14.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-font-kerning:1.0pt;
+	font-weight:normal;}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	tab-stops:center 207.65pt right 415.3pt;
+	layout-grid-mode:char;
+	font-size:9.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:宋体;
+	mso-hansi-font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";
+	mso-font-kerning:1.0pt;}
+ /* Page Definitions */
+@page
+	{mso-page-border-surround-header:no;
+	mso-page-border-surround-footer:no;
+	mso-gutter-position:top;}
+@page Section1
+	{size:595.3pt 841.9pt;
+	margin:3.0cm 70.9pt 79.4pt 70.9pt;
+	mso-header-margin:42.55pt;
+	mso-footer-margin:42.55pt;
+	mso-even-footer:url("./no4.files/header.htm") ef1;
+	mso-footer:url("./no4.files/header.htm") f1;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+@list l0
+	{mso-list-id:148786675;
+	mso-list-type:simple;
+	mso-list-template-ids:894093116;}
+@list l0:level1
+	{mso-level-text:"\[%1\]";
+	mso-level-tab-stop:30.0pt;
+	mso-level-number-position:left;
+	margin-left:30.0pt;
+	text-indent:-30.0pt;}
+@list l1
+	{mso-list-id:699547901;
+	mso-list-type:simple;
+	mso-list-template-ids:-595400884;}
+@list l1:level1
+	{mso-level-start-at:0;
+	mso-level-text:%1;
+	mso-level-tab-stop:18.0pt;
+	mso-level-number-position:left;
+	margin-left:18.0pt;
+	text-indent:-18.0pt;}
+@list l2
+	{mso-list-id:1061438774;
+	mso-list-type:simple;
+	mso-list-template-ids:-1069647046;}
+@list l2:level1
+	{mso-level-number-format:japanese-counting;
+	mso-level-text:%1．;
+	mso-level-tab-stop:21.0pt;
+	mso-level-number-position:left;
+	margin-left:21.0pt;
+	text-indent:-21.0pt;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+<!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="2050"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body lang=ZH-CN style='tab-interval:21.25pt;text-justify-trim:punctuation' bgcolor="#e8ffe8">
+<div class=Section1>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:18.0pt;mso-bidi-font-size:10.0pt;mso-fareast-font-family:
+黑体'><span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-size:18.0pt;mso-bidi-font-size:10.0pt;font-family:黑体;mso-ascii-font-family:
+"Times New Roman"'>按位异或及其在求解游戏策略问题中的应用</span><span lang=EN-US style='font-size:
+18.0pt;mso-bidi-font-size:10.0pt;mso-fareast-font-family:黑体'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:18.0pt;mso-bidi-font-size:10.0pt;mso-fareast-font-family:
+黑体'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly;
+mso-layout-grid-align:none'><b style='mso-bidi-font-weight:normal'><span
+lang=EN-US style='font-size:14.0pt;mso-bidi-font-size:10.0pt;mso-fareast-font-family:
+黑体'><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></b><span
+lang=EN-US style='font-size:14.0pt;mso-bidi-font-size:10.0pt;mso-fareast-font-family:
+黑体'><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+style="mso-spacerun: yes">&nbsp;</span></span><span style='font-size:14.0pt;
+mso-bidi-font-size:10.0pt;font-family:仿宋_GB2312;mso-ascii-font-family:"Times New Roman"'>李学武</span><span
+lang=EN-US style='font-size:14.0pt;mso-bidi-font-size:10.0pt;mso-fareast-font-family:
+仿宋_GB2312'><o:p></o:p></span></p>
+
+  <p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly;
+mso-layout-grid-align:none'><span lang=EN-US style='font-size:14.0pt;
+mso-bidi-font-size:10.0pt;mso-fareast-font-family:黑体'><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+    </span></span><span style='font-size:9.0pt;mso-bidi-font-size:10.0pt;
+font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>（原载:《计算机科学》 2001.10）</span><span
+lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly;
+mso-layout-grid-align:none'><b style='mso-bidi-font-weight:normal'><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>摘要</span></b><b
+style='mso-bidi-font-weight:normal'><span style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt'> </span></b><span style='font-family:楷体_GB2312;mso-ascii-font-family:
+"Times New Roman"'>本文给出了关于按位异或运算的若干性质，在此基础上给出了该运算的两个较为重要的结果（定理</span><span
+lang=EN-US style='mso-fareast-font-family:楷体_GB2312'>1</span><span
+style='font-family:楷体_GB2312;mso-ascii-font-family:"Times New Roman"'>、定理</span><span
+lang=EN-US style='mso-fareast-font-family:楷体_GB2312'>2</span><span
+style='font-family:楷体_GB2312;mso-ascii-font-family:"Times New Roman"'>），并给出了它们在涉及到平衡态的游戏策略问题中的具体应用</span><span
+lang=EN-US style='mso-fareast-font-family:楷体_GB2312'>. </span><span
+style='font-family:楷体_GB2312;mso-ascii-font-family:"Times New Roman"'>有关结果未曾在其它资料中找到</span><span
+lang=EN-US style='mso-fareast-font-family:楷体_GB2312'>.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly;
+mso-layout-grid-align:none'><b style='mso-bidi-font-weight:normal'><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>关键词</span></b><b
+style='mso-bidi-font-weight:normal'><span style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt'> </span></b><span style='font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>异或；按位异或；游戏策略；</span><span style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:"Times New Roman"'>平衡态<span
+lang=EN-US><span style="mso-spacerun: yes">&nbsp;&nbsp; </span></span></span><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt'><o:p></o:p></span></b></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly;
+mso-layout-grid-align:none'><b style='mso-bidi-font-weight:normal'><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>中图分类号</span></b><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt'><o:p></o:p></span></b></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>在下文中，</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>N<sup>*</sup></span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>均表示非负十进制数的集合</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly;
+mso-layout-grid-align:none'><b style='mso-bidi-font-weight:normal'><span
+lang=EN-US style='font-size:14.0pt;mso-bidi-font-size:10.0pt;mso-fareast-font-family:
+黑体'>1 </span></b><b style='mso-bidi-font-weight:normal'><span style='font-size:
+14.0pt;mso-bidi-font-size:10.0pt;font-family:黑体;mso-ascii-font-family:"Times New Roman"'>按位异或的若干性质</span></b><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:14.0pt;
+mso-bidi-font-size:10.0pt;mso-fareast-font-family:黑体'><o:p></o:p></span></b></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp; </span></span><b style='mso-bidi-font-weight:
+normal'><span style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>定义</span></b><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt'>1</span></b><b style='mso-bidi-font-weight:normal'><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>：（</span></b><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt'>a</span></b><b style='mso-bidi-font-weight:normal'><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+"Times New Roman"'>⊙</span></b><b style='mso-bidi-font-weight:normal'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>b</span></b><b
+style='mso-bidi-font-weight:normal'><span style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>）</span></b><span style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt'> </span><span style='font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>设</span><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt'>a,b</span><span style='font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:宋体;mso-hansi-font-family:"Times New Roman"'>∈</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>{0,1}, </span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>两个一位二进制数</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>a </span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>，</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>b</span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>的异或</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>a</span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+"Times New Roman"'>⊙</span><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt'>b</span><span style='font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>的真值表如下：</span><span lang=EN-US style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp; </span><span style="mso-spacerun:
+yes">&nbsp;&nbsp;</span><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;</span><o:p></o:p></span></p>
+
+<table border=1 cellspacing=0 cellpadding=0 style='margin-left:89.4pt;
+ border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>
+ <tr>
+  <td width=98 valign=top style='width:73.5pt;border:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:20.0pt;
+  mso-line-height-rule:exactly'><span lang=EN-US style='font-size:12.0pt;
+  mso-bidi-font-size:10.0pt'>a<o:p></o:p></span></p>
+  </td>
+  <td width=98 valign=top style='width:73.5pt;border:solid windowtext .5pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:20.0pt;
+  mso-line-height-rule:exactly'><span lang=EN-US style='font-size:12.0pt;
+  mso-bidi-font-size:10.0pt'>b <o:p></o:p></span></p>
+  </td>
+  <td width=98 valign=top style='width:73.5pt;border:solid windowtext .5pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:20.0pt;
+  mso-line-height-rule:exactly'><span lang=EN-US style='font-size:12.0pt;
+  mso-bidi-font-size:10.0pt'>a</span><span style='font-size:12.0pt;mso-bidi-font-size:
+  10.0pt;font-family:宋体;mso-hansi-font-family:"Times New Roman"'>⊙</span><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>b<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=98 valign=top style='width:73.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:20.0pt;
+  mso-line-height-rule:exactly'><span lang=EN-US style='font-size:12.0pt;
+  mso-bidi-font-size:10.0pt'>1<o:p></o:p></span></p>
+  </td>
+  <td width=98 valign=top style='width:73.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:20.0pt;
+  mso-line-height-rule:exactly'><span lang=EN-US style='font-size:12.0pt;
+  mso-bidi-font-size:10.0pt'>1<o:p></o:p></span></p>
+  </td>
+  <td width=98 valign=top style='width:73.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:20.0pt;
+  mso-line-height-rule:exactly'><span lang=EN-US style='font-size:12.0pt;
+  mso-bidi-font-size:10.0pt'>0<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=98 valign=top style='width:73.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:20.0pt;
+  mso-line-height-rule:exactly'><span lang=EN-US style='font-size:12.0pt;
+  mso-bidi-font-size:10.0pt'>1<o:p></o:p></span></p>
+  </td>
+  <td width=98 valign=top style='width:73.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:20.0pt;
+  mso-line-height-rule:exactly'><span lang=EN-US style='font-size:12.0pt;
+  mso-bidi-font-size:10.0pt'>0<o:p></o:p></span></p>
+  </td>
+  <td width=98 valign=top style='width:73.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:20.0pt;
+  mso-line-height-rule:exactly'><span lang=EN-US style='font-size:12.0pt;
+  mso-bidi-font-size:10.0pt'>1<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=98 valign=top style='width:73.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:20.0pt;
+  mso-line-height-rule:exactly'><span lang=EN-US style='font-size:12.0pt;
+  mso-bidi-font-size:10.0pt'>0<o:p></o:p></span></p>
+  </td>
+  <td width=98 valign=top style='width:73.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:20.0pt;
+  mso-line-height-rule:exactly'><span lang=EN-US style='font-size:12.0pt;
+  mso-bidi-font-size:10.0pt'>1<o:p></o:p></span></p>
+  </td>
+  <td width=98 valign=top style='width:73.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:20.0pt;
+  mso-line-height-rule:exactly'><span lang=EN-US style='font-size:12.0pt;
+  mso-bidi-font-size:10.0pt'>1<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=98 valign=top style='width:73.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:20.0pt;
+  mso-line-height-rule:exactly'><span lang=EN-US style='font-size:12.0pt;
+  mso-bidi-font-size:10.0pt'>0<o:p></o:p></span></p>
+  </td>
+  <td width=98 valign=top style='width:73.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:20.0pt;
+  mso-line-height-rule:exactly'><span lang=EN-US style='font-size:12.0pt;
+  mso-bidi-font-size:10.0pt'>0<o:p></o:p></span></p>
+  </td>
+  <td width=98 valign=top style='width:73.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:20.0pt;
+  mso-line-height-rule:exactly'><span lang=EN-US style='font-size:12.0pt;
+  mso-bidi-font-size:10.0pt'>0<o:p></o:p></span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;</span><b style='mso-bidi-font-weight:normal'><span
+style="mso-spacerun: yes">&nbsp;</span></b></span><b style='mso-bidi-font-weight:
+normal'><span style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>定义</span></b><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt'>2</span></b><b style='mso-bidi-font-weight:normal'><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>：</span></b><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt'>(x xor y)</span></b><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'> <span style="mso-spacerun:
+yes">&nbsp;</span>x,y</span><span style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt;font-family:宋体;mso-hansi-font-family:"Times New Roman"'>∈<span
+lang=EN-US>N<sup>*</sup>, 两个非负十进制数</span></span><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'> x,y</span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>的按位异或</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'> x xor y</span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>是对相应的二进制数按位进行</span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+"Times New Roman"'>⊙</span><span style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>运算，其结果仍转换为十进制数</span><span lang=EN-US style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt'>. </span><span style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>如果相应的二进制位数不等，较小的数前面的空白按零处理</span><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp; </span></span><span style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>例：</span><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>10 xor 3 </span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>的值是</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>9.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp; </span></span><span style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>一些高级计算机语言，如</span><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>C</span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>，</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>(</span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>扩展</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>)PASCAL</span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>等都支持对十进制整数的</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>xor</span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>运算</span><span
+lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:10.0pt'>(</span><span
+style='font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>参看</span><span
+lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:10.0pt'>[1])</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+mso-hansi-font-family:"Times New Roman"'><span style="mso-spacerun:
+yes">&nbsp;</span><b style='mso-bidi-font-weight:normal'>⊙</b></span><b
+style='mso-bidi-font-weight:normal'><span style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>运算的性质：</span></b><b style='mso-bidi-font-weight:normal'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><o:p></o:p></span></b></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;</span><span style="mso-spacerun:
+yes">&nbsp;</span></span><b style='mso-bidi-font-weight:normal'><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>性质</span></b><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt'>1: (</span></b><b style='mso-bidi-font-weight:normal'><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>交换律）</span></b><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>若</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>a,b</span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+"Times New Roman"'>∈</span><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt'>{0,1}</span><span style='font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>，则</span><span lang=EN-US style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt'>a</span><span style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt;font-family:宋体;mso-hansi-font-family:"Times New Roman"'>⊙</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>b= b</span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+"Times New Roman"'>⊙<span lang=EN-US>a.<o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+mso-hansi-font-family:"Times New Roman"'><span style="mso-spacerun: yes">&nbsp;
+</span></span><b style='mso-bidi-font-weight:normal'><span style='font-size:
+12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>性质</span></b><b style='mso-bidi-font-weight:
+normal'><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:宋体;mso-hansi-font-family:"Times New Roman"'>2:(结合律)</span></b><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'> </span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>若</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>a,b,c</span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+"Times New Roman"'>∈</span><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt'>{0,1}</span><span style='font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>，则</span><span lang=EN-US style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt'>(a</span><span style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt;font-family:宋体;mso-hansi-font-family:"Times New Roman"'>⊙</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>b)</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+mso-hansi-font-family:"Times New Roman"'> ⊙c=a⊙(b⊙c).<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+"Times New Roman"'>性质<span lang=EN-US>1、2 容易利用定义1中的真值表验证.<o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;</span><span style="mso-spacerun:
+yes">&nbsp;</span><b style='mso-bidi-font-weight:normal'>xor</b></span><b
+style='mso-bidi-font-weight:normal'><span style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>运算的性质</span></b><b style='mso-bidi-font-weight:normal'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><o:p></o:p></span></b></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp; </span></span><span style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>在下文中，</span><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>x,y,z</span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+"Times New Roman"'>∈<span lang=EN-US>N<sup>*</sup>, x<sub>1</sub>,x<sub>2</sub>,</span></span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;mso-ascii-font-family:
+宋体'>…</span><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:宋体;mso-hansi-font-family:"Times New Roman"'>,x<sub>n</sub>∈N<sup>*</sup>.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+mso-hansi-font-family:"Times New Roman"'><span style="mso-spacerun: yes">&nbsp;
+</span></span><b style='mso-bidi-font-weight:normal'><span style='font-size:
+12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>性质</span></b><b style='mso-bidi-font-weight:
+normal'><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:宋体;mso-hansi-font-family:"Times New Roman"'>3: </span></b><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+mso-hansi-font-family:"Times New Roman"'>x xor 0=x.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+mso-hansi-font-family:"Times New Roman"'><span style="mso-spacerun: yes">&nbsp;
+</span></span><b style='mso-bidi-font-weight:normal'><span style='font-size:
+12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>性质</span></b><b style='mso-bidi-font-weight:
+normal'><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:宋体;mso-hansi-font-family:"Times New Roman"'>4: </span></b><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+mso-hansi-font-family:"Times New Roman"'>x xor y=0 的充分必要条件是x=y.</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp; </span></span><span style='font-size:
+12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:"Times New Roman"'>利用定义<span
+lang=EN-US>2容易证明性质3、4.<o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+mso-hansi-font-family:"Times New Roman"'><span style="mso-spacerun:
+yes">&nbsp;</span><span style="mso-spacerun: yes">&nbsp;</span></span><b
+style='mso-bidi-font-weight:normal'><span style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>性质</span></b><b style='mso-bidi-font-weight:normal'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>5</span></b><b
+style='mso-bidi-font-weight:normal'><span style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>：</span></b><b style='mso-bidi-font-weight:normal'><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+"Times New Roman"'>（交换律） </span></b><span lang=EN-US style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:"Times New Roman"'>x
+xor y = y xoy x<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+mso-hansi-font-family:"Times New Roman"'><span style="mso-spacerun: yes">&nbsp;
+</span>证明：设x=(b<sub>t</sub></span><span lang=EN-US style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt;mso-ascii-font-family:宋体'>…</span><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+"Times New Roman"'>b<sub>1</sub>b<sub>0</sub>)<sub>2</sub>,b<sub>i</sub>∈</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>{0,1}, i=0,1,…,t,
+b<sub>t</sub>=1;<span style="mso-spacerun: yes">&nbsp; </span>y=(c<sub>r</sub>…c<sub>1</sub>c<sub>0</sub>)<sub>2</sub>,</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+mso-hansi-font-family:"Times New Roman"'> c<sub>i</sub>∈</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>{0,1},<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>i=0,1,…,r, <span
+style="mso-spacerun: yes">&nbsp;</span>c<sub>r</sub>=1.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp; </span></span><span style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>不妨设</span><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>t</span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+"Times New Roman"'>≥</span><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt'>r, </span><span style='font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>可在</span><span lang=EN-US style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt'>c<sub>r</sub> </span><span style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>之前补</span><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>r-t</span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>个零，即</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>c<sub>t</sub>
+=…=c<sub>r+1</sub>=0,<span style="mso-spacerun: yes">&nbsp; </span></span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>由性质</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>1</span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+"Times New Roman"'>，<span lang=EN-US> b<sub>i</sub>⊙c<sub>i</sub>=c<sub>i</sub>⊙b<sub>i</sub>,
+i=1,</span></span><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt;mso-ascii-font-family:宋体'>…</span><span lang=EN-US style='font-size:
+12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:"Times New Roman"'>,t,
+所以</span><span style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>性质</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>5</span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+"Times New Roman"'>成立<span lang=EN-US>.<o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp; </span></span><b style='mso-bidi-font-weight:
+normal'><span style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>性质</span></b><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt'>6:</span></b><b style='mso-bidi-font-weight:normal'><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+"Times New Roman"'>（结合律） </span></b><span lang=EN-US style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:"Times New Roman"'>(x
+xor y)xor z=x xor(y xor z)<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+mso-hansi-font-family:"Times New Roman"'><span style="mso-spacerun: yes">&nbsp;
+</span>证明与</span><span style='font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>性质</span><span lang=EN-US style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt'>5</span><span style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt;font-family:宋体;mso-hansi-font-family:"Times New Roman"'>类似（利用性质<span
+lang=EN-US>2）</span></span><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp; </span></span><b style='mso-bidi-font-weight:
+normal'><span style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>性质</span></b><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt'>7</span></b><span lang=EN-US style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:"Times New Roman"'>:<b
+style='mso-bidi-font-weight:normal'>（增广律）</b>若x=y,<span style="mso-spacerun:
+yes">&nbsp; </span>则x xor z=y xor z.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+"Times New Roman"'>性质<span lang=EN-US>7可利用定义1、2直接导出.<o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp; </span></span><b style='mso-bidi-font-weight:
+normal'><span style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>性质</span></b><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt'>8</span></b><b style='mso-bidi-font-weight:normal'><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>：</span></b><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+"Times New Roman"'>若<span lang=EN-US>x&lt;2<sup>t</sup>, 则x xor 2<sup>t</sup>=x+2<sup>t</sup></span></span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp; </span></span><b style='mso-bidi-font-weight:
+normal'><span style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>性质</span></b><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt'>9</span></b><b style='mso-bidi-font-weight:normal'><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>：</span></b><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+"Times New Roman"'>设<span lang=EN-US>x=(b<sub>t</sub></span></span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;mso-ascii-font-family:
+宋体'>…</span><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:宋体;mso-hansi-font-family:"Times New Roman"'>b<sub>1</sub>b<sub>0</sub>)<sub>2</sub>,
+b<sub>i</sub>∈</span><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt'>{0,1},<span style="mso-spacerun: yes">&nbsp; </span>i=0,1,…,t, b<sub>t</sub>=1;<span
+style="mso-spacerun: yes">&nbsp; </span></span><span style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:"Times New Roman"'>则<span
+lang=EN-US>x xor 2<sup>t</sup>=x-2<sup>t</sup></span></span><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+"Times New Roman"'>性质<span lang=EN-US>8、9 可利用定义1、2直接导出.<o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp; </span></span><b style='mso-bidi-font-weight:
+normal'><span style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>性质</span></b><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt'>10</span></b><span lang=EN-US style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:"Times New Roman"'>:
+若x&lt;2<sup>t</sup>, 且y&lt;2<sup>t</sup>,<span style="mso-spacerun: yes">&nbsp;
+</span>则(x xor y)+2<sup>t</sup>=x xor (y+2<sup>t</sup>).</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp; </span></span><span style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>由已知及定义，易知</span><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>x xor y&lt;2<sup>t</sup></span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>，</span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'> </span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>由性质</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>8</span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>，</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'> (x xor y)+2<sup>t
+</sup>= x xor y xor 2<sup>t<span style="mso-spacerun: yes">&nbsp; </span></sup>=
+x xor (y xor 2<sup>t</sup>) = x xor (y +2<sup>t</sup>), </span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>故性质</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>10</span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+"Times New Roman"'>成立<span lang=EN-US>.<o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp; </span></span><b style='mso-bidi-font-weight:
+normal'><span style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>性质</span></b><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt'>11</span></b><span lang=EN-US style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:"Times New Roman"'>:
+x与偶数个y 的异或仍为x ,即：x xor y xor y xor</span><span lang=EN-US style='font-size:
+12.0pt;mso-bidi-font-size:10.0pt;mso-ascii-font-family:宋体'>…</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+mso-hansi-font-family:"Times New Roman"'> xor y=x（共偶数个y）.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>这是性质</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>3</span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>、</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>4</span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+"Times New Roman"'>的直接推论<span lang=EN-US>.<o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:"Times New Roman"'><span
+style="mso-spacerun: yes">&nbsp; </span>定义3：（T） </span></b><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+"Times New Roman"'>设<span lang=EN-US>x<sub>1</sub>,x<sub>2</sub>,</span></span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;mso-ascii-font-family:
+宋体'>…</span><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:宋体;mso-hansi-font-family:"Times New Roman"'>,x<sub>n</sub>∈N<sup>*</sup>,<span
+style="mso-spacerun: yes">&nbsp; </span>则：T=x<sub>1</sub> xor x<sub>2</sub> xor</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;mso-ascii-font-family:
+宋体'>…</span><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:宋体;mso-hansi-font-family:"Times New Roman"'>xor x<sub>n</sub>.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+mso-hansi-font-family:"Times New Roman"'><span style="mso-spacerun: yes">&nbsp;
+</span><b style='mso-bidi-font-weight:normal'>定义4：（T<sub>i</sub>）</b>设x<sub>1</sub>,x<sub>2</sub>,</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;mso-ascii-font-family:
+宋体'>…</span><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:宋体;mso-hansi-font-family:"Times New Roman"'>,x<sub>n</sub>∈N<sup>*</sup>,
+<span style="mso-spacerun: yes">&nbsp;</span>则T<sub>i</sub>=T xor x<sub>i</sub>,
+i=1,2,</span><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;
+mso-ascii-font-family:宋体'>…</span><span lang=EN-US style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:"Times New Roman"'>,n.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>由性质</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>3</span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>、</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>4</span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+"Times New Roman"'>，<span lang=EN-US> T<sub>i</sub>实质上就是对{ x<sub>1</sub>,x<sub>2</sub>,</span></span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;mso-ascii-font-family:
+宋体'>…</span><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:宋体;mso-hansi-font-family:"Times New Roman"'>,x<sub>i-1</sub>,x<sub>i+1</sub>，</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;mso-ascii-font-family:
+宋体'>…</span><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:宋体;mso-hansi-font-family:"Times New Roman"'>,x<sub>n</sub>}中的n-1个数求异或.</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp; </span></span><b style='mso-bidi-font-weight:
+normal'><span style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>定义</span></b><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt'>5</span></b><b style='mso-bidi-font-weight:normal'><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>：（取数操作）</span></b><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'> </span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>在</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>n</span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>个非负整数序列</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>x<sub>1</sub>,x<sub>2</sub>,…,x<sub>n</sub></span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>中，选取一个</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>x<sub>i</sub></span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>及正整数</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>b, </span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>满足</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>x<sub>i</sub></span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+"Times New Roman"'>≥</span><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt'>b</span><span style='font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:宋体;mso-hansi-font-family:"Times New Roman"'>＞</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>0</span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>，再用</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>y<sub>i</sub>=x<sub>i</sub></span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+mso-hansi-font-family:"Times New Roman"'>-</span><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>b</span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>取代序列中的</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>x<sub>i</sub></span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>，称为对序列</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+mso-hansi-font-family:"Times New Roman"'>x<sub>1</sub>,x<sub>2</sub>,</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;mso-ascii-font-family:
+宋体'>…</span><span style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+宋体;mso-hansi-font-family:"Times New Roman"'>，<span lang=EN-US>x<sub>n</sub>的一个取数操作.<o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+mso-hansi-font-family:"Times New Roman"'><span style="mso-spacerun: yes">&nbsp;
+</span><b style='mso-bidi-font-weight:normal'>定理1：</b>给定N<sup>*</sup>中的序列x<sub>1</sub>,x<sub>2</sub>,</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;mso-ascii-font-family:
+宋体'>…</span><span style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+宋体;mso-hansi-font-family:"Times New Roman"'>，<span lang=EN-US>x<sub>n</sub>（n≥2），若T≠0，必存在一个取数操作，使y<sub>i</sub>取代x<sub>i</sub>后，</span></span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>T ’=x<sub>1</sub>
+xor…x<sub>i-1</sub><span style="mso-spacerun: yes">&nbsp; </span>xor<span
+style="mso-spacerun: yes">&nbsp; </span>y<sub>i</sub><span style="mso-spacerun:
+yes">&nbsp; </span>xor<span style="mso-spacerun: yes">&nbsp; </span>x<sub>i+1 </sub><span
+style="mso-spacerun: yes">&nbsp;</span>xor …x<sub>n</sub>=0.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;</span><span style="mso-spacerun:
+yes">&nbsp;</span></span><span style='font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>证明：取</span><span lang=EN-US style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt'>T<sub>i</sub>=T xor x<sub>i</sub> , </span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>如果存在某个</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>x<sub>i</sub>&gt;T<sub>i</sub>
+</span><span style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>令</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>b=x<sub>i</sub></span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+mso-hansi-font-family:"Times New Roman"'>-</span><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>T<sub>i</sub>&gt;0,<span
+style="mso-spacerun: yes">&nbsp; </span>y<sub>i</sub>=x<sub>i</sub></span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+mso-hansi-font-family:"Times New Roman"'>-</span><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>b=T<sub>i</sub>. </span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>由性质</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>3</span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>、</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>4</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+mso-hansi-font-family:"Times New Roman"'>,知，用y<sub>i</sub>代替序列x<sub>1</sub></span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;mso-ascii-font-family:
+宋体'>…</span><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:宋体;mso-hansi-font-family:"Times New Roman"'>x<sub>n</sub>中的x<sub>i,
+</sub>即T</span><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt;mso-ascii-font-family:宋体'>’</span><span lang=EN-US style='font-size:
+12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:"Times New Roman"'>=(T
+xor x<sub>i</sub> )xor y<sub>i </sub>= T<sub>i</sub> xor T<sub>i</sub> =0.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+mso-hansi-font-family:"Times New Roman"'><span style="mso-spacerun: yes">&nbsp;
+</span>下面证明必存在某个i ∈</span><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt'>{1,2,…,n}, </span><span style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>使</span><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt'>x<sub>i</sub>&gt;T<sub>i </sub></span><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+"Times New Roman"'>.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+mso-hansi-font-family:"Times New Roman"'><span style="mso-spacerun: yes">&nbsp;
+</span>设序列x<sub>1</sub></span><span lang=EN-US style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt;mso-ascii-font-family:宋体'>…</span><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+"Times New Roman"'>x<sub>n</sub> 对应二进制数序列中，最大数的最高非零位为t+1位，最高位的值对应于2<sup>t</sup>，设这样的数有r个(n≥r≥1)，记相应的集合为A<sup>*</sup>,分两种情况讨论:<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+mso-hansi-font-family:"Times New Roman"'><span style="mso-spacerun: yes">&nbsp;
+</span>⑴ r是奇数. 不妨设x<sub>1</sub>∈A<sup>*</sup>，即 x<sub>1</sub>≥2<sup>t</sup> . A<sup>*</sup>中还有偶数个具有t+1位的数，其中任何两个数的异或均&lt;2<sup>t</sup>，利用性质3、4可知
+T<sub>1</sub>=T xor x<sub>1</sub>&lt;2<sup>t</sup>, ∴x<sub>1</sub>&gt;T<sub>1</sub>,结论正确.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+mso-hansi-font-family:"Times New Roman"'><span style="mso-spacerun: yes">&nbsp;
+</span>⑵ r是偶数.不妨设 x<sub>1</sub></span><span lang=EN-US style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt;mso-ascii-font-family:宋体'>…</span><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+"Times New Roman"'>x<sub>r</sub> ∈A<sup>*</sup>，其余x<sub>j</sub>均小于2<sup>t</sup>，在T中添加r(偶数)个2<sup>t</sup>：T=x<sub>1</sub>
+xor x<sub>2</sub></span><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt;mso-ascii-font-family:宋体'>…</span><span lang=EN-US style='font-size:
+12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:"Times New Roman"'>
+xor x<sub>r</sub> xor </span><span lang=EN-US style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt;mso-ascii-font-family:宋体'>…</span><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+"Times New Roman"'>xor x<sub>n</sub><o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+mso-hansi-font-family:"Times New Roman"'><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="mso-spacerun:
+yes">&nbsp;</span>=(x<sub>1</sub> xor 2<sup>t</sup>) xor </span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;mso-ascii-font-family:
+宋体'>…</span><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:宋体;mso-hansi-font-family:"Times New Roman"'> xor (x<sub>r</sub> xor
+2<sup>t</sup>) xor </span><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt;mso-ascii-font-family:宋体'>…</span><span lang=EN-US style='font-size:
+12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:"Times New Roman"'>xor
+x<sub>n<span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </span></sub>(根据性质11)<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+mso-hansi-font-family:"Times New Roman"'><span style="mso-spacerun:
+yes">&nbsp;</span><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>=y<sub>1</sub> xor y<sub>2</sub> </span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;mso-ascii-font-family:
+宋体'>…</span><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:宋体;mso-hansi-font-family:"Times New Roman"'>xor y<sub>r</sub> xor x<sub>r+1</sub>
+</span><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;
+mso-ascii-font-family:宋体'>…</span><span lang=EN-US style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:"Times New Roman"'>
+xor x<sub>n</sub><span style="mso-spacerun: yes">&nbsp; </span><o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+"Times New Roman"'>根据性质<span lang=EN-US>9，y<sub>i</sub>=x<sub>i</sub>-2<sup>t</sup>,i=1,</span></span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;mso-ascii-font-family:
+宋体'>…</span><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:宋体;mso-hansi-font-family:"Times New Roman"'>,r, 序列y<sub>1</sub>,y<sub>2</sub>,</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;mso-ascii-font-family:
+宋体'>…</span><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:宋体;mso-hansi-font-family:"Times New Roman"'>y<sub>r</sub>,x<sub>r&shy;+1</sub></span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;mso-ascii-font-family:
+宋体'>…</span><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:宋体;mso-hansi-font-family:"Times New Roman"'>x<sub>n</sub> 对应的二进制数序列中的最大数最高非零位为s+1位，显然s&lt;t，设最高位对应于2<sup>s</sup>的数有p个，若p是奇数，则已;
+若是偶数，则重复上述操作，直到某一步，具有相同最高位的数的个数为奇数个为止.我们说这一步必然能达到，否则，若具有相同最高位的数的个数永远为偶数，其结果必导致T=0，与题设矛盾.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+mso-hansi-font-family:"Times New Roman"'><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp; </span>将上述操作的最后的结果记为y<sub>1</sub></span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;mso-ascii-font-family:
+宋体'>…</span><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:宋体;mso-hansi-font-family:"Times New Roman"'>y<sub>p</sub>，y<sub>p+1</sub></span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;mso-ascii-font-family:
+宋体'>…</span><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:宋体;mso-hansi-font-family:"Times New Roman"'>y<sub>n</sub>.由于每次只增加了偶数个2<sup>i</sup>的异或，由性质11，T的值不变.其中
+y<sub>1</sub></span><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt;mso-ascii-font-family:宋体'>…</span><span lang=EN-US style='font-size:
+12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:"Times New Roman"'>y<sub>p</sub>各数对应的二进制数的最高位对应于2<sup>t</sup>，其余y<sub>j</sub>均小于2<sup>t</sup>，且p是奇数.
+T=y<sub>1</sub> xor </span><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt;mso-ascii-font-family:宋体'>…</span><span lang=EN-US style='font-size:
+12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:"Times New Roman"'>xor
+y<sub>p</sub> xor y<sub>p+1</sub> </span><span lang=EN-US style='font-size:
+12.0pt;mso-bidi-font-size:10.0pt;mso-ascii-font-family:宋体'>…</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+mso-hansi-font-family:"Times New Roman"'>xor y<sub>n .</sub><o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+mso-hansi-font-family:"Times New Roman"'><span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span>下面证明x<sub>1</sub>&gt;T<sub>1</sub><o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+mso-hansi-font-family:"Times New Roman"'><span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span>易知：x<sub>1</sub>=y<sub>1</sub>+2<sup>t1</sup>+</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;mso-ascii-font-family:
+宋体'>…</span><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:宋体;mso-hansi-font-family:"Times New Roman"'>+2<sup>tu</sup>，其中，t1&gt;t2&gt;</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;mso-ascii-font-family:
+宋体'>…</span><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:宋体;mso-hansi-font-family:"Times New Roman"'>&gt;tu ,即y<sub>1</sub> 是由x<sub>1</sub>依次经过对2<sup>t1</sup>，</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;mso-ascii-font-family:
+宋体'>…</span><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:宋体;mso-hansi-font-family:"Times New Roman"'>2<sup>tu</sup> ，的异或得到的（参看性质8、9）.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+mso-hansi-font-family:"Times New Roman"'><span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span>利用前面⑴的分析，易知y<sub>1</sub>&gt;T xor y<sub>1</sub>， 显然 T
+xor y<sub>1</sub>&lt;2<sup>ti</sup>，i=1，</span><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;mso-ascii-font-family:宋体'>…</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+mso-hansi-font-family:"Times New Roman"'>u; <span style="mso-spacerun:
+yes">&nbsp;</span>∴y<sub>1</sub>+2<sup>t1</sup>+</span><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;mso-ascii-font-family:宋体'>…</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+mso-hansi-font-family:"Times New Roman"'>+2<sup>tu</sup>&gt;(T xor y<sub>1</sub>)+2<sup>t1</sup>+</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;mso-ascii-font-family:
+宋体'>…</span><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:宋体;mso-hansi-font-family:"Times New Roman"'>+2<sup>tu</sup> ,左边即为x<sub>1</sub>，右边多次利用性质10，可得：<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+mso-hansi-font-family:"Times New Roman"'><span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span>（T xor y<sub>1</sub>）+2<sup>t1</sup>+</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;mso-ascii-font-family:
+宋体'>…</span><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:宋体;mso-hansi-font-family:"Times New Roman"'>+2<sup>tu</sup> =T xor
+(y1+2<sup>t1</sup>+</span><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt;mso-ascii-font-family:宋体'>…</span><span lang=EN-US style='font-size:
+12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:"Times New Roman"'>+2<sup>tu</sup>
+) =T xor x<sub>1</sub>=T<sub>1</sub>即 x<sub>1</sub>&gt;T<sub>1</sub>, 证毕.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+mso-hansi-font-family:"Times New Roman"'><span style="mso-spacerun: yes">&nbsp;
+</span><b style='mso-bidi-font-weight:normal'>例：</b>设(x<sub>1</sub>,x<sub>2</sub>,x<sub>3</sub>,x<sub>4</sub>)=(10,11,13,15)<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+mso-hansi-font-family:"Times New Roman"'><span style="mso-spacerun:
+yes">&nbsp;</span>T=10 xor 11 xor 13 xor 15<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+mso-hansi-font-family:"Times New Roman"'><span style="mso-spacerun: yes">&nbsp;
+</span>=(10 xor 8)xor(11 xor 8)xor(13 xor 8)xor(15 xor 8) （性质11、5、6）<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+mso-hansi-font-family:"Times New Roman"'><span style="mso-spacerun: yes">&nbsp;
+</span>=2 xor 3 xor 5 xor 7 （性质9）<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+mso-hansi-font-family:"Times New Roman"'><span style="mso-spacerun: yes">&nbsp;
+</span>=2 xor 3 xor (5 xor 4) xor(7 xor 4) （性质11）<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+mso-hansi-font-family:"Times New Roman"'><span style="mso-spacerun: yes">&nbsp;
+</span>=2 xor 3 xor 1 xor 3 （性质9）<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+mso-hansi-font-family:"Times New Roman"'><span style="mso-spacerun: yes">&nbsp;
+</span>=y<sub>1</sub> xor y<sub>2</sub> xor y<sub>3</sub> xor y<sub>4 </sub>= 3<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+mso-hansi-font-family:"Times New Roman"'><span style="mso-spacerun: yes">&nbsp;
+</span>这时，大于或等于2<sup>1</sup>的y<sub>i</sub>有3个，为奇数，由定理1的证明过程可以断定x<sub>1</sub>&gt;T<sub>1</sub>,x<sub>2</sub>&gt;T<sub>2</sub>,x<sub>4</sub>&gt;T<sub>4</sub>,
+但不能保证x<sub>3</sub>&gt;T<sub>3</sub>.对x<sub>1</sub>取数，得：T<sub>1</sub>=T xor x<sub>1</sub>=3
+xor 10=9, b=x<sub>1</sub>-T<sub>1</sub>=1, y<sub>1</sub>=T<sub>1</sub>=9, T</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;mso-ascii-font-family:
+宋体'>’</span><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:宋体;mso-hansi-font-family:"Times New Roman"'>=T xor X<sub>1</sub>
+xor y<sub>1</sub>=3 xor 10 xor 9=0.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+mso-hansi-font-family:"Times New Roman"'><span style="mso-spacerun: yes">&nbsp;
+</span><b style='mso-bidi-font-weight:normal'>定理2：</b>设T=0，对序列x<sub>1</sub></span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;mso-ascii-font-family:
+宋体'>…</span><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:宋体;mso-hansi-font-family:"Times New Roman"'>x<sub>n</sub><span
+style="mso-spacerun: yes">&nbsp; </span>作任一次取数操作，即取x<sub>i</sub> 及正数b，满足x<sub>i</sub>≥b＞0，然后用y<sub>i</sub>=x<sub>i</sub>-b代替x<sub>i</sub>
+(x<sub>i</sub>＞y<sub>i</sub>≥0）后，记T</span><span lang=EN-US style='font-size:
+12.0pt;mso-bidi-font-size:10.0pt;mso-ascii-font-family:宋体'>’</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+mso-hansi-font-family:"Times New Roman"'>=x<sub>1</sub> xor </span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;mso-ascii-font-family:
+宋体'>…</span><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:宋体;mso-hansi-font-family:"Times New Roman"'> x<sub>i-1</sub> xor y<sub>i</sub>
+xor x<sub>i+1</sub> </span><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt;mso-ascii-font-family:宋体'>…</span><span lang=EN-US style='font-size:
+12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:"Times New Roman"'>xor
+x<sub>n</sub>，则必有T</span><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt;mso-ascii-font-family:宋体'>’</span><span style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:"Times New Roman"'>≠<span
+lang=EN-US>0.<o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+mso-hansi-font-family:"Times New Roman"'><span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span>证明：令y<sub>i</sub>=x<sub>i</sub>-b, x<sub>i</sub>≥b＞0, y<sub>i</sub>≥0，T</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;mso-ascii-font-family:
+宋体'>’</span><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:宋体;mso-hansi-font-family:"Times New Roman"'>=T xor y<sub>i</sub>
+xor x<sub>i</sub> (即从T中去掉x<sub>i</sub>,加上y<sub>i</sub>)<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+mso-hansi-font-family:"Times New Roman"'><span style="mso-spacerun: yes">&nbsp;
+</span>=y<sub>i</sub> xor x<sub>i</sub> =y<sub>i</sub> xor（y<sub>i</sub> +b）(注意
+T=0).如果T</span><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt;mso-ascii-font-family:宋体'>’</span><span lang=EN-US style='font-size:
+12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:"Times New Roman"'>=0，由性质4，必有
+y<sub>i</sub>=x<sub>i</sub> 从而导致b=0，与b&gt;0矛盾，证毕.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+mso-hansi-font-family:"Times New Roman"'><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp; </span>如果将T=0的情形定义为某系统处于平衡态，T≠0的情形定义为处于非平衡态，定理1、定理2表明：当系统处于非平衡态时，至少存在一种取数操作，将其变为平衡态；当系统处于平衡态时，任何一个取数操作都将导致非平衡态.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:14.0pt;
+mso-bidi-font-size:10.0pt;font-family:黑体'>2 一类游戏策略问题及解法<o:p></o:p></span></b></p>
+
+<p class=MsoPlainText style='line-height:20.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style="mso-spacerun: yes">&nbsp; </span></span><b style='mso-bidi-font-weight:
+normal'><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>2.1
+(取石子游戏1)</span></b><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt'> 任给N堆石子,堆数N 及每堆石子数由游戏者给出，两人(游戏者与计算机)轮流从任一堆中任取(每次只能取自一堆),计算机先取,取最后一颗石子的一方获胜.
+试设计一种方法，使计算机有较多的获胜的机会.<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:20.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span>分析：记第i堆石子数为x<sub>i</sub> ，T=x<sub>1</sub> xor x<sub>2</sub></span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:"Courier New";
+mso-ascii-font-family:宋体;mso-bidi-font-family:"Times New Roman"'>…</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'> xor x<sub>r</sub>
+xor </span><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:"Courier New";mso-ascii-font-family:宋体;mso-bidi-font-family:"Times New Roman"'>…</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>xor x<sub>n</sub>，显然，有必胜策略的一方应在取数操作之前面临非平衡态，操作后留给对方平衡态.根据定理1与定理2，如果初始状态时T=0，计算机一方没有必胜策略，可在最多的一堆中取一颗，寄获胜希望于对方的失误.如果初始状态时T≠0，由定理1，必存在某个x<sub>i</sub>&gt;T<sub>i</sub>
+，可在第i 堆中取x<sub>i</sub>-T<sub>i</sub> 颗，使对方永远处于T=0的平衡状态，计算机必胜.<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:20.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><b style='mso-bidi-font-weight:
+normal'><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp; </span>C语言程序如下：<o:p></o:p></span></b></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US>#include
+&lt;stdio.h&gt;</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US>unsigned int
+a[11], n;</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US>void init1()</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style="mso-spacerun: yes">&nbsp;</span>{int i;</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style="mso-spacerun: yes">&nbsp; </span>printf(&quot;input n(2--10):&quot;);<span
+style="mso-spacerun: yes">&nbsp; </span>scanf(&quot;%u&quot;,&amp;n);</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style="mso-spacerun: yes">&nbsp; </span>for (i=1;i&lt;=n;i++)</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </span>{printf(&quot;input No.%d
+Number of stone:\n&quot;,i);</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>scanf(&quot;%d&quot;,&amp;a[i]);}</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style="mso-spacerun: yes">&nbsp;</span>}</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US>void
+status()</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style="mso-spacerun: yes">&nbsp;</span>{int i;</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style="mso-spacerun: yes">&nbsp; </span>printf(&quot;Now remainder:\n&quot;);</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style="mso-spacerun: yes">&nbsp; </span>for (i=1;i&lt;=n;i++)<span
+style="mso-spacerun: yes">&nbsp; </span>printf(&quot; No.%d<span
+style="mso-spacerun: yes">&nbsp;&nbsp; </span>rem: %u \n&quot;,i,a[i]);</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style="mso-spacerun: yes">&nbsp;</span>}</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US>unsigned int
+sum1()</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style="mso-spacerun: yes">&nbsp;</span>{unsigned int s; int i;</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style="mso-spacerun: yes">&nbsp; </span>for(s=0,i=1;i&lt;=n;i++)<span
+style="mso-spacerun: yes">&nbsp; </span>s+=a[i];</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style="mso-spacerun: yes">&nbsp; </span>return s;</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style="mso-spacerun: yes">&nbsp;</span>}</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US>unsigned int
+xorall()</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style="mso-spacerun: yes">&nbsp;</span>{unsigned int s; int i;</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style="mso-spacerun: yes">&nbsp; </span>for (s=0,i=1;i&lt;=n;i++)<span
+style="mso-spacerun: yes">&nbsp; </span>s^=a[i];</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style="mso-spacerun: yes">&nbsp; </span>return s;</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style="mso-spacerun: yes">&nbsp;</span>}</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US>main()</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style="mso-spacerun: yes">&nbsp;</span>{unsigned int t;<span
+style="mso-spacerun: yes">&nbsp; </span>int i,s,e;</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style="mso-spacerun: yes">&nbsp; </span>init1();</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style="mso-spacerun: yes">&nbsp; </span>while (sum1())</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style="mso-spacerun: yes">&nbsp;&nbsp; </span>{if (xorall()==0)</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </span><span style="mso-spacerun:
+yes">&nbsp;</span><span style="mso-spacerun: yes">&nbsp;</span>{for
+(i=1;i&lt;=n;i++)</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp; </span>if(a[i]&gt;0)</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span><span style="mso-spacerun:
+yes">&nbsp; </span><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>{printf(&quot;computer take 1 from
+No.%d \n&quot;,i);</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span><span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>a[i]--; break;</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span><span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;</span>}</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style="mso-spacerun: yes">&nbsp;</span>}</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </span>else</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span><span style="mso-spacerun:
+yes">&nbsp; </span>for (i=1;i&lt;=n;i++)</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span><span style="mso-spacerun:
+yes">&nbsp; </span><span style="mso-spacerun: yes">&nbsp;&nbsp;</span>{s=a[i]-(xorall()^a[i])
+;</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp; </span><span style="mso-spacerun: yes">&nbsp;</span>if
+(s&gt;0)</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="mso-spacerun:
+yes">&nbsp;</span><span style="mso-spacerun:
+yes">&nbsp;</span>{printf(&quot;computer take %u from No.%d \n&quot;,s,i);</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="mso-spacerun:
+yes">&nbsp;</span><span style="mso-spacerun: yes">&nbsp;</span>a[i]^=xorall();</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span><span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span><span style="mso-spacerun: yes">&nbsp;</span><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;</span>break;</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>}</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span><span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span><span style="mso-spacerun: yes">&nbsp;</span>}</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </span>if(sum1()==0)</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>{printf(&quot;computer win!&quot;); break;}</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </span>status();</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </span>while (1)</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>{printf(&quot;Input your selection\n(exp. 1 2<span style="mso-spacerun:
+yes">&nbsp; </span>means take 2 from No.1):\n&quot;);</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp; </span>scanf(&quot;%d %u&quot;,&amp;e,&amp;t);</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp; </span>if
+((e&gt;=1)&amp;&amp;(e&lt;=n)&amp;&amp;(a[e]&gt;=t))</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span><span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;</span>{a[e]-=t; break;}</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp; </span>else</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span><span style="mso-spacerun:
+yes">&nbsp; </span><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>printf(&quot;data error!<span
+style="mso-spacerun: yes">&nbsp; </span>re-input...\n&quot;);</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>}</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </span>if(sum1()==0)</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>{printf(&quot;you win!&quot;); break;}</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style="mso-spacerun: yes">&nbsp;&nbsp; </span>}</span></p>
+
+<p class=MsoPlainText style='line-height:16.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style="mso-spacerun: yes">&nbsp;</span>}</span></p>
+
+<p class=MsoPlainText style='line-height:20.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style="mso-spacerun: yes">&nbsp; </span></span><b style='mso-bidi-font-weight:
+normal'><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>2.2
+(取石子游戏2)</span></b><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt'> 任给N堆石子,堆数N 及每堆石子数由游戏者给出，两人(游戏者与计算机)轮流从任一堆中任取(每次只能取自一堆),规定每方每次最多取K颗，计算机先取,取最后一颗石子的一方获胜.试设计一种方法，使计算机有较多的获胜的机会.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span></span><span style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>分析：记第</span><span lang=EN-US style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt'>i</span><span style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>堆石子数为</span><span lang=EN-US style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt'>x<sub>i</sub> </span><span style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>，令</span><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>y<sub>i</sub>=x<sub>i</sub> mod
+(K+1), i=1,…,n, </span><span style='font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>定义</span><span lang=EN-US style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt'>T=y<sub>1</sub> xor y<sub>2</sub>… xor y<sub>r</sub>
+xor …xor y<sub>n . .</sub></span><span style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>如果初始状态时</span><span lang=EN-US style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt'>T=0</span><span style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>，则为平衡态，先走的计算机一方没有获胜策略，如果初始状态时</span><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>T</span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>≠</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>0</span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>，由定理</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>1</span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>，必存在某个</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>y<sub>i</sub>&gt;T<sub>i</sub>
+</span><span style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>，可在第</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>i </span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>堆中取</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>y<sub>i</sub>-T<sub>i</sub>
+</span><span style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>颗，使对方处于</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>T=0</span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>的平衡状态，在以后的各轮中，对方在第</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>i</span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>堆中取</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>r</span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>颗，若</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'> x<sub>i</sub>&gt;k,</span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>计算机就在同一堆中取</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>k+1</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+mso-hansi-font-family:"Times New Roman"'>-</span><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>r</span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>颗</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>, </span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>这时</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>y<sub>i</sub></span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>不变</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>. </span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>若</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'> x<sub>i</sub></span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>≤</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>k,</span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>则重新计算</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>y<sub>i</sub></span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>及</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>T</span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>，按问题</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>2.1</span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>的方法选取，这时，计算机有必胜策略</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>. </span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>具体实现细节不再赘述</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>.</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+mso-hansi-font-family:"Times New Roman"'> <o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-hansi-font-family:
+"Times New Roman"'><span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </span>对上述算法略做修改，便可解决问题2.1、2.2的对偶问题：</span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>取最后一颗石子的一方为失败</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>.</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;
+mso-hansi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><b style='mso-bidi-font-weight:
+normal'><span style='font-family:黑体'>参考文献：<span lang=EN-US><o:p></o:p></span></span></b></p>
+
+<p class=MsoNormal style='margin-left:30.0pt;text-indent:-30.0pt;line-height:
+20.0pt;mso-line-height-rule:exactly;mso-list:l0 level1 lfo3;tab-stops:list 30.0pt;
+layout-grid-mode:char;mso-layout-grid-align:none'><![if !supportLists]><span
+lang=EN-US style='font-family:宋体;mso-hansi-font-family:"Times New Roman"'>[1]<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><span lang=EN-US style='font-family:宋体;mso-hansi-font-family:
+"Times New Roman"'>B.W.Kernighan &amp; D.M.Ritchie, The C Programming Language
+2nd,Prentice Hall,1988,<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US>p.48, p.207.</span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<h1><span lang=EN-US>The bitwise exclusive OR operator and its application to
+strategy for playing</span></h1>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;</span>Li<span
+style="mso-spacerun: yes">&nbsp; </span>Xuewu<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>(Dept. of Computer Science, Tianjin
+Normal University, Tianjin , 300074)<o:p></o:p></span></p>
+
+<h1><b style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:
+12.0pt;mso-bidi-font-size:10.0pt'>Abstract</span></b><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>: the paper presents some
+properties on bitwise exclusive OR operator, especially, theorem 1 and theorem
+2 are two important results. And also it presents its application to strategy
+for playing about balance status<o:p></o:p></span></h1>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><b style='mso-bidi-font-weight:
+normal'><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>Key
+words</span></b><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt'>: exclusive OR ; bitwise exclusive OR;<span style="mso-spacerun:
+yes">&nbsp; </span>strategy for playing; balance status<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly;
+mso-layout-grid-align:none'><span style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>作者通讯地址：李学武</span><span style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt'> </span><span style='font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>（天津师范大学计算机科学系（天津市河西区八里台），邮编</span><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>300074</span><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>）</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+</div>
+
+</body>
+
+</html>

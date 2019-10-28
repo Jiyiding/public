@@ -1,0 +1,766 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 9">
+<meta name=Originator content="Microsoft Word 9">
+<link rel=File-List href="./No66.files/filelist.xml">
+<title>跳马问题</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>li</o:Author>
+  <o:LastAuthor>a</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:TotalTime>1</o:TotalTime>
+  <o:Created>1996-12-31T16:55:00Z</o:Created>
+  <o:LastSaved>1996-12-31T16:55:00Z</o:LastSaved>
+  <o:Pages>4</o:Pages>
+  <o:Words>437</o:Words>
+  <o:Characters>2496</o:Characters>
+  <o:Lines>20</o:Lines>
+  <o:Paragraphs>4</o:Paragraphs>
+  <o:CharactersWithSpaces>3065</o:CharactersWithSpaces>
+  <o:Version>9.2812</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:PunctuationKerning/>
+  <w:DrawingGridVerticalSpacing>7.8 磅</w:DrawingGridVerticalSpacing>
+  <w:DisplayHorizontalDrawingGridEvery>0</w:DisplayHorizontalDrawingGridEvery>
+  <w:DisplayVerticalDrawingGridEvery>2</w:DisplayVerticalDrawingGridEvery>
+  <w:Compatibility>
+   <w:SpaceForUL/>
+   <w:BalanceSingleByteDoubleByteWidth/>
+   <w:DoNotLeaveBackslashAlone/>
+   <w:ULTrailSpace/>
+   <w:DoNotExpandShiftReturn/>
+   <w:FootnoteLayoutLikeWW8/>
+   <w:ShapeLayoutLikeWW8/>
+   <w:AlignTablesRowByRow/>
+   <w:ForgetLastTabAlignment/>
+   <w:LayoutRawTableWidth/>
+   <w:LayoutTableRowsApart/>
+   <w:UseFELayout/>
+  </w:Compatibility>
+ </w:WordDocument>
+</xml><![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+@font-face
+	{font-family:宋体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-alt:SimSun;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+@font-face
+	{font-family:"\@宋体";
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:1 135135232 16 0 262144 0;}
+ /* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:宋体;
+	mso-hansi-font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";
+	mso-font-kerning:1.0pt;}
+ /* Page Definitions */
+@page
+	{mso-page-border-surround-header:no;
+	mso-page-border-surround-footer:no;}
+@page Section1
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;
+	mso-header-margin:42.55pt;
+	mso-footer-margin:49.6pt;
+	mso-paper-source:0;
+	layout-grid:15.6pt;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+</head>
+
+<body lang=ZH-CN style='tab-interval:21.25pt;text-justify-trim:punctuation' bgcolor="#e8ffe8">
+<div class=Section1 style='layout-grid:15.6pt'>
+
+<p class=MsoPlainText align=center style='text-align:center;line-height:18.0pt;
+mso-line-height-rule:exactly'><b style='mso-bidi-font-weight:normal'><span
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>跳马问题<span lang=EN-US><o:p></o:p></span></span></b></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt'>16.(*)( 6_24<span style="mso-spacerun: yes">&nbsp;
+</span>p.197 <span style="mso-spacerun: yes">&nbsp;</span>)<o:p></o:p></span></b></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>int map[12][12],
+status[12][12]，kp;<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>int
+c[8][2]={{2,1},{2,-1},{1,2},{1,-2},<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>{-2,1},{-2,-1},{-1,2},{-1,-2}};<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt'>void prt(int a[][12])<span style="mso-spacerun:
+yes">&nbsp; </span>/* 打印棋盘状态 */<o:p></o:p></span></b></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>{int i,j,i2,j2;<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;</span>printf(&quot;\n&quot;);<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;</span>for (i=2;i&lt;=9;i++)<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp; </span>{ for (j=2;j&lt;=9;j++)<span
+style="mso-spacerun: yes">&nbsp; </span>printf(&quot;%4d&quot;,a[i][j]);<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </span>printf(&quot;\n&quot;);<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp; </span>}<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;</span>}<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt'>void status2(void)<span style="mso-spacerun:
+yes">&nbsp; </span>/* 计算棋盘各点条件数 */<o:p></o:p></span></b></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>{ int
+i,j,k,i2,j2,kz;<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp; </span>for(i=0;i&lt;12;i++)<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </span>for(j=0;j&lt;12;j++)<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>status[i][j]=100;<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp; </span>for(i=2;i&lt;=9;i++)<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </span>for(j=2;j&lt;=9;j++)<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </span>{kz=0;<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>for
+(k=0;k&lt;=7;k++)<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;</span><span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span><span style='mso-tab-count:1'>&nbsp;&nbsp; </span>{i2=i+c[k][0];j2=j+c[k][1];<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp; </span>if (map[i2][j2]&lt;50)<span
+style="mso-spacerun: yes">&nbsp; </span>kz++;<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp; </span>}<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>status[i][j]=kz;<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </span>}<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp; </span>prt(status);<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;</span>}<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt'>void sort1(int b1[],int b2[])<span
+style="mso-spacerun: yes">&nbsp; </span>/* 对8个可能的方向按条件数排序 */<o:p></o:p></span></b></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>{int i,j,mini,t;
+/*b1[]记录状态值（升序），b2[]记录排序后的下标 */<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;</span>for (i=0;i&lt;7;i++)<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp; </span>{mini=i;<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp; </span>for (j=i+1;j&lt;=7;j++)<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </span>if
+(b1[j]&lt;b1[mini])<span style="mso-spacerun: yes">&nbsp;&nbsp; </span>mini=j;<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;
+</span>t=b1[i];b1[i]=b1[mini];b1[mini]=t;<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;
+</span>t=b2[i];b2[i]=b2[mini];b2[mini]=t;<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp; </span>}<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;</span>}<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt'>void init1(void)<span style="mso-spacerun:
+yes">&nbsp; </span>/* 初始化 */<o:p></o:p></span></b></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>{int i,j,k;<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;</span>for(i=0;i&lt;12;i++)<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp; </span>for(j=0;j&lt;12;j++)<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>map[i][j]=100;<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;</span>for(i=2;i&lt;=9;i++)<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp; </span>for(j=2;j&lt;=9;j++)<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>map[i][j]=0;<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;</span>status2();<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>}<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt'>void search(int i2,int j2) /* 利用递归回溯进行搜索 */<o:p></o:p></span></b></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;</span>{int b1[8],b2[8],i,i3,j3;<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp; </span>kp++;<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp; </span>if(kp==65)<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </span>{prt(map);<span
+style="mso-spacerun: yes">&nbsp; </span>exit(0); }<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp; </span>for(i=0;i&lt;=7;i++)<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp; </span>{b2[i]=i;<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;
+</span>b1[i]=status[i2+c[i][0]][j2+c[i][1]];<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </span>}<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;</span><span style="mso-spacerun:
+yes">&nbsp;</span>sort1(b1,b2);<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp; </span>for(i=0;i&lt;=7;i++)<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </span>{i3=i2+c[b2[i]][0];
+j3=j2+c[b2[i]][1];<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </span>if (map[i3][j3]==0)<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>{
+map[i3][j3]=kp;<span style="mso-spacerun: yes">&nbsp; </span>search(i3,j3);
+map[i3][j3]=0;<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='mso-tab-count:1'> </span>}<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </span>}<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp; </span>kp--;<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;</span>}<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>main()<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>{init1();<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;</span>map[5][2]=1; kp=1;<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;</span>search(5,2);<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>}<o:p></o:p></span></p>
+
+<p class=MsoNormal style='line-height:18.0pt;mso-line-height-rule:exactly'><b
+style='mso-bidi-font-weight:normal'><span style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>运行结果：</span></b><b style='mso-bidi-font-weight:normal'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><o:p></o:p></span></b></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp; </span>2<span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span>3<span style="mso-spacerun: yes">&nbsp;&nbsp; </span>4<span
+style="mso-spacerun: yes">&nbsp;&nbsp; </span>4<span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span>4<span style="mso-spacerun: yes">&nbsp;&nbsp;
+</span>4<span style="mso-spacerun: yes">&nbsp;&nbsp; </span>3<span
+style="mso-spacerun: yes">&nbsp;&nbsp; </span>2<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp; </span>3<span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span>4<span style="mso-spacerun: yes">&nbsp;&nbsp;
+</span>6<span style="mso-spacerun: yes">&nbsp;&nbsp; </span>6<span
+style="mso-spacerun: yes">&nbsp;&nbsp; </span>6<span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span>6<span style="mso-spacerun: yes">&nbsp;&nbsp;
+</span>4<span style="mso-spacerun: yes">&nbsp;&nbsp; </span>3<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp; </span>4<span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span>6<span style="mso-spacerun: yes">&nbsp;&nbsp;
+</span>8<span style="mso-spacerun: yes">&nbsp;&nbsp; </span>8<span
+style="mso-spacerun: yes">&nbsp;&nbsp; </span>8<span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span>8<span style="mso-spacerun: yes">&nbsp;&nbsp;
+</span>6<span style="mso-spacerun: yes">&nbsp;&nbsp; </span>4<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp; </span>4<span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span>6<span style="mso-spacerun: yes">&nbsp;&nbsp;
+</span>8<span style="mso-spacerun: yes">&nbsp;&nbsp; </span>8<span
+style="mso-spacerun: yes">&nbsp;&nbsp; </span>8<span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span>8<span style="mso-spacerun: yes">&nbsp;&nbsp;
+</span>6<span style="mso-spacerun: yes">&nbsp;&nbsp; </span>4<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp; </span>4<span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span>6<span style="mso-spacerun: yes">&nbsp;&nbsp;
+</span>8<span style="mso-spacerun: yes">&nbsp;&nbsp; </span>8<span
+style="mso-spacerun: yes">&nbsp;&nbsp; </span>8<span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span>8<span style="mso-spacerun: yes">&nbsp;&nbsp;
+</span>6<span style="mso-spacerun: yes">&nbsp;&nbsp; </span>4<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp; </span>4<span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span>6<span style="mso-spacerun: yes">&nbsp;&nbsp;
+</span>8<span style="mso-spacerun: yes">&nbsp;&nbsp; </span>8<span
+style="mso-spacerun: yes">&nbsp;&nbsp; </span>8<span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span>8<span style="mso-spacerun: yes">&nbsp;&nbsp;
+</span>6<span style="mso-spacerun: yes">&nbsp;&nbsp; </span>4<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp; </span>3<span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span>4<span style="mso-spacerun: yes">&nbsp;&nbsp;
+</span>6<span style="mso-spacerun: yes">&nbsp;&nbsp; </span>6<span
+style="mso-spacerun: yes">&nbsp;&nbsp; </span>6<span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span>6<span style="mso-spacerun: yes">&nbsp;&nbsp;
+</span>4<span style="mso-spacerun: yes">&nbsp;&nbsp; </span>3<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp; </span>2<span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span>3<span style="mso-spacerun: yes">&nbsp;&nbsp;
+</span>4<span style="mso-spacerun: yes">&nbsp;&nbsp; </span>4<span
+style="mso-spacerun: yes">&nbsp;&nbsp; </span>4<span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span>4<span style="mso-spacerun: yes">&nbsp;&nbsp;
+</span>3<span style="mso-spacerun: yes">&nbsp;&nbsp; </span>2<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp; </span>32<span style="mso-spacerun:
+yes">&nbsp; </span>17<span style="mso-spacerun: yes">&nbsp;&nbsp;
+</span>42<span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </span>3<span
+style="mso-spacerun: yes">&nbsp;&nbsp; </span>34<span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span>19<span style="mso-spacerun: yes">&nbsp;&nbsp;
+</span>44<span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </span>5<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp; </span>41<span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span>2<span style="mso-spacerun: yes">&nbsp;&nbsp;
+</span>33<span style="mso-spacerun: yes">&nbsp;&nbsp; </span>18<span
+style="mso-spacerun: yes">&nbsp;&nbsp; </span>43<span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp; </span>4<span style="mso-spacerun: yes">&nbsp;&nbsp;
+</span>35<span style="mso-spacerun: yes">&nbsp;&nbsp; </span>20<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp; </span>16<span style="mso-spacerun:
+yes">&nbsp; </span>31<span style="mso-spacerun: yes">&nbsp;&nbsp;
+</span>64<span style="mso-spacerun: yes">&nbsp;&nbsp; </span>53<span
+style="mso-spacerun: yes">&nbsp;&nbsp; </span>38<span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span>59<span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;
+</span>6<span style="mso-spacerun: yes">&nbsp;&nbsp; </span>45<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp; </span>1<span style="mso-spacerun:
+yes">&nbsp; </span>40<span style="mso-spacerun: yes">&nbsp;&nbsp;
+</span>61<span style="mso-spacerun: yes">&nbsp;&nbsp; </span>58<span
+style="mso-spacerun: yes">&nbsp;&nbsp; </span>63<span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span>52<span style="mso-spacerun: yes">&nbsp;&nbsp;
+</span>21<span style="mso-spacerun: yes">&nbsp;&nbsp; </span>36<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp; </span>30<span style="mso-spacerun:
+yes">&nbsp; </span>15<span style="mso-spacerun: yes">&nbsp;&nbsp;
+</span>54<span style="mso-spacerun: yes">&nbsp;&nbsp; </span>39<span
+style="mso-spacerun: yes">&nbsp;&nbsp; </span>60<span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span>37<span style="mso-spacerun: yes">&nbsp;&nbsp;
+</span>46<span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </span>7<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp; </span>55<span style="mso-spacerun:
+yes">&nbsp; </span>12<span style="mso-spacerun: yes">&nbsp;&nbsp;
+</span>57<span style="mso-spacerun: yes">&nbsp;&nbsp; </span>62<span
+style="mso-spacerun: yes">&nbsp;&nbsp; </span>51<span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span>48<span style="mso-spacerun: yes">&nbsp;&nbsp;
+</span>25<span style="mso-spacerun: yes">&nbsp;&nbsp; </span>22<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp; </span>14<span style="mso-spacerun:
+yes">&nbsp; </span>29<span style="mso-spacerun: yes">&nbsp;&nbsp;
+</span>10<span style="mso-spacerun: yes">&nbsp;&nbsp; </span>49<span
+style="mso-spacerun: yes">&nbsp;&nbsp; </span>24 <span style="mso-spacerun:
+yes">&nbsp;&nbsp;</span>27<span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;
+</span>8<span style="mso-spacerun: yes">&nbsp;&nbsp; </span>47<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp; </span>11<span style="mso-spacerun:
+yes">&nbsp; </span>56<span style="mso-spacerun: yes">&nbsp;&nbsp;
+</span>13<span style="mso-spacerun: yes">&nbsp;&nbsp; </span>28<span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </span>9<span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span>50<span style="mso-spacerun: yes">&nbsp;&nbsp;
+</span>23<span style="mso-spacerun: yes">&nbsp;&nbsp; </span>26<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt'>17. ( ex 6_32 p.201 <span style="mso-spacerun:
+yes">&nbsp;</span>选择排序，利用递归实现 )<o:p></o:p></span></b></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>void select(int
+a[],int begin,int n)<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>{int i,t,min;<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;</span>min=begin;<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;</span>for (i=begin+1;i&lt;n;i++)<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp; </span>if(a[i]&lt;a[min])<span
+style="mso-spacerun: yes">&nbsp; </span>min=i;<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;</span>t=a[begin]; a[begin]=a[min]; a[min]=t;<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;</span>if (begin&lt;n-1)<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp; </span>select(a,begin+1,n);<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>}<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>main()<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>{int
+a[10]={5,6,7,99,1,2,0,45,21,-97};<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;</span>int i,n=10;<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;</span>for(i=0;i&lt;=n-1;i++)<span
+style="mso-spacerun: yes">&nbsp; </span><span style="mso-spacerun:
+yes">&nbsp;</span>printf(&quot;%5d &quot;,a[i]);<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;</span>printf(&quot;\n&quot;);<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;</span>select(a,0,n);<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;</span>for(i=0;i&lt;=n-1;i++)<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;</span><span style="mso-spacerun: yes">&nbsp;
+</span>printf(&quot;%5d &quot;,a[i]);<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;</span>printf(&quot;\n&quot;);<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>}<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt'>18.( ex 6_25 p.202<span style="mso-spacerun:
+yes">&nbsp; </span>二分查找，递归方法 )<o:p></o:p></span></b></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>void
+binsearch(int b[],int x,int low,int high)<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>{int mid;<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;</span>if (low&gt;high)<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp; </span>{printf(&quot;\n%d dosn't exists in the
+array!\n&quot;,x);<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp; </span>exit(0);<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp; </span>}<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;</span>mid=(low+high)/2;<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;</span>if(x==b[mid])<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp; </span>{printf(&quot;OK!
+b[%d]=%d\n&quot;,mid,x);<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </span>exit(0);<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp; </span>}<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;</span>if(x&gt;b[mid])<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp; </span>binsearch(b,x,mid+1,high);<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;</span>else<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp; </span>binsearch(b,x,mid,high-1);<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>}<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>main()<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>{int
+a[10]={2,3,4,5,7,10,20,40,50,100};<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;</span>int key,n=10;;<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;</span>printf(&quot;input a number for
+search:\n&quot;);<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;</span>scanf(&quot;%d&quot;,&amp;key);<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span
+style="mso-spacerun: yes">&nbsp;</span>binsearch(a,key,0,n-1);<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>}<o:p></o:p></span></p>
+
+<p class=MsoPlainText style='line-height:18.0pt;mso-line-height-rule:exactly;
+layout-grid-mode:char;mso-layout-grid-align:none'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+</div>
+
+</body>
+
+</html>
